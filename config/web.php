@@ -43,14 +43,25 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'product/index',
+                '/products/json' => 'api/product/json',
+                '/admin/products' => 'admin/product/index',
+                '/admin/product/view/<id:\d+>' => '/admin/product/view',
+                '/admin/product/edit/<id:\d+>' => '/admin/product/edit',
+                '/admin/product/activate/<id:\d+>' => '/admin/product/activate',
+                '/admin/product/draft/<id:\d+>' => '/admin/product/draft',
+                '/admin/product/delete/<id:\d+>' => '/admin/product/delete',
+
+                '/admin/promo' => 'admin/promo/index',
+                '/admin/promo/view/<id:\d+>' => '/admin/promo/view',
+                '/admin/promo/edit/<id:\d+>' => '/admin/promo/edit',
+                '/admin/promo/delete/<id:\d+>' => '/admin/promo/delete',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
