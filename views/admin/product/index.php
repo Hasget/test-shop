@@ -22,29 +22,34 @@ $this->title = 'Товары';
         </div>
     </div>
 
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Наименование</th>
-            <th scope="col">Цена</th>
-            <th scope="col">Валюта</th>
-            <th scope="col">Статус</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($products as $product): ?>
+    <?php if ($products): ?>
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
-                <th scope="row"><?= $product->id ?></th>
-                <td><a href="/admin/product/view/<?= $product->id ?>"><?= $product->name ?></a></td>
-                <td><?= $product->price ?></td>
-                <td><?= CurrencyEnum::$list[$product->currency] ?></td>
-                <td><?= StatusEnum::$list[$product->status] ?></td>
+                <th scope="col">#</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Валюта</th>
+                <th scope="col">Статус</th>
             </tr>
-        <?php endforeach; ?>
-
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?>
+                    <tr>
+                        <th scope="row"><?= $product->id ?></th>
+                        <td><a href="/admin/product/view/<?= $product->id ?>"><?= $product->name ?></a></td>
+                        <td><?= $product->price ?></td>
+                        <td><?= CurrencyEnum::$list[$product->currency] ?></td>
+                        <td><?= StatusEnum::$list[$product->status] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <div class="text-center" style="margin-top: 60px;">
+            <h5>Товары отсутствуют.</h5>
+        </div>
+    <?php endif; ?>
 
 <?= LinkPager::widget([
     'pagination' => $provider->getPagination(),
